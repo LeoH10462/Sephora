@@ -55,7 +55,7 @@ Our project aims to predict the popularity of Sephora products by analyzing metr
    - [Sephora dataset on Kaggle](https://www.kaggle.com/datasets/raghadalharbi/all-products-available-on-sephora-website)
 
 3. **Link to the Jupyter Notebook**:
-   - For detailed data preprocessing and exploratory steps, refer to our main [Jupyter Notebook (Milestone2)](https://colab.research.google.com/drive/11AtEBgBjyXsO3iqD6CdqW-k8uq9Wm3vC), which includes:
+   - For detailed data preprocessing and exploratory steps, refer to our main [Jupyter Notebook (Milestone2)](Sephora/cse151a_milestone2.py), which includes:
      - Step-by-step data exploration and preprocessing.
      - Code to handle missing values, encoding, and standardization.
      - Initial visualizations and insights into the dataset.
