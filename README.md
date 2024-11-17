@@ -71,6 +71,12 @@ Based on the evaluation metrics, the Multiple Linear Regression model is likely 
 
    To improve the model's generalization capabilities and address overfitting, we plan to explore regularization techniques such as **Ridge and Lasso Regression** will be applied to   penalize large coefficients, thereby preventing overfitting and encouraging simpler models that generalize better.
 
+   Polynomial Regression: Considering the non-linear pattern observed in the residual plot, incorporating a polynomial regression model may help capture more complex relationships between the features and the target variable.
+
+   Tree-based Models (Decision Tree): Since our current model might be missing non-linear relationships, using a tree-based model can provide better performance in capturing complex patterns without making strong parametric assumptions.
+
+   Support Vector Machines (SVMs): For a more refined approach, SVMs with different kernel functions could also be explored. Like price and satisfied is non-linear and complex, an SVM with an RBF kernel could be a good choice. This would allow the model to draw non-linear boundaries in the feature space to better classify satisfied outcomes.
+
 3. **Graphical Analysis**
    The following plots were used to analyze model performance:
 
