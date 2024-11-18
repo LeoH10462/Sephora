@@ -5,6 +5,7 @@ Our project aims to predict the popularity of Sephora products by analyzing metr
 1. **Handling Missing Values**:
 
    - We’ll check for any missing values in critical columns like `rating`, `reviews`, and `love` metrics. For numerical fields (e.g., `rating`, `price`), missing values will be imputed with the median or mean. For categorical fields (e.g., `brand`, `category`), we’ll consider using the mode or adding a category such as "Unknown."
+   - After addressing missing values, we will explore the target variable (rating) to understand its distribution and behavior. Most products have ratings skewed toward higher values, indicating a general customer satisfaction trend. However, a few lower ratings suggest areas where specific products or categories may need improvement. Visualizing the rating distribution will help highlight these patterns and provide insight into potential anomalies or trends.
 
 2. **Encoding Categorical Variables**:
 
