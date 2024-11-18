@@ -88,6 +88,10 @@ The following steps were performed:
    - **Distribution of Residuals**: Plotted the residuals' distribution to check if they were normally distributed. A normal distribution of residuals indicates that the model has no major biases and that the errors are evenly distributed. Deviations from normality may suggest model misspecification or the presence of outliers. In our case, the residuals looked roughly normal but not perfectly normal, which suggests that while the model performs reasonably well, there may still be minor biases or unaddressed complexities in the data.
 
    - **Predicted vs. Actual Plot**: Compared predicted values against actual values to evaluate how well the model captures the target variable. Ideally, the points should align closely with the line , which would indicate perfect predictions. Deviations from this line indicate areas where the model may be underpredicting or overpredicting. In our model, the points deviated from this line, indicating that the model's predictions were not always accurate, and there is room for improvement.
+  
+## Conclusion
+
+Our Multiple Linear Regression model captured a good portion of variance in the training data but struggled to generalize, indicating overfitting. The training R² score (0.7041) was significantly higher than the test R² score (0.6205), and the test MSE (0.3695) was noticeably larger than the training MSE (0.2978). While residuals were close to normal, there were slight patterns, and the predicted vs. actual plot showed deviations, suggesting that our model was not fully capturing the data’s complexity. In order to improve the predictive accuracy, we plan to try to implement regularization, such as Ridge or Lasso Regression to control overfitting by reducing large coefficients; explore non-linear models to capture more complex relationships; cap or remove extreme values to avoid skewing results.
 
 ## Instructions for Jupyter Notebook
 
