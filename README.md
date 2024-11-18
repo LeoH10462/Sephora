@@ -58,6 +58,11 @@ We trained a **Linear Regression** model using the preprocessed data. Here are f
    - Training R^2 Score: 0.704103802543203 (The score was very close to 1, suggesting that the model is fitting the training data well.)
    - Test R^2 Score: 0.6204882662063373 (The score was lower, indicating possible overfitting.)
 
+   In addition to evaluating the model using a single train-test split, we applied 5-fold cross-validation to understand the model's robustness and generalizability better. The results are as follows:
+
+      - Cross-Validation MSE (Mean): 0.6686685476420623 (higher than the single train-test split result, possibly because the cross-validation uses smaller training subsets)
+      - Cross-Validation MSE (Standard Deviation): 0.1543842684818222（low variance in error indicates the model has consistent performance across folds）
+
 
 2. **Question**: Where does your model fit in the fitting graph? and What are the next models you are thinking of and why?
 Based on the evaluation metrics, the Multiple Linear Regression model is likely overfitting the training data:
