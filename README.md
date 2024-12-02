@@ -44,10 +44,12 @@ Our project aims to predict the popularity of Sephora products by analyzing metr
 
 We trained a **Linear Regression** model using the preprocessed data. Here are features used for prediction:
 `brand`, `category`, `size`, `rating`, `number_of_reviews`, `love`, `MarketingFlags`, `online_only`, `exclusive`, `limited_edition`, `limited_time_offer`.
+
+To improve the model's generalization capabilities and address overfitting, we applied Ridge Regression to introduce a regularization term that penalizes large coefficients. 
 The following steps were performed:
 
 - **Data Split**: The data was split into a training set (80%) and a test set (20%).
-
+- **Define hyperparameter grid for Ridge regression**
 - **Model Training**: A pipeline was built combining data preprocessing and model training using **Multiple Linear Regression**.
 
 
@@ -62,9 +64,9 @@ The following steps were performed:
 
    In addition to evaluating the model using a single train-test split, we applied 5-fold cross-validation to understand the model's robustness and generalizability better. The results are as follows:
 
-   - Cross-Validation MSE (Mean): 0.6716926709430133 (higher than the single train-test split result, possibly because the cross-validation uses smaller training subsets)
-   - Cross-Validation MSE (Standard Deviation): 0.156367199432331（low variance in error indicates the model has consistent performance across folds）
-
+   - Cross-Validation MSE (Mean): 0.6404048139275803
+   - Cross-Validation MSE (Standard Deviation): 0.1610573421083503
+   
 2. **Question**: Where does your model fit in the fitting graph? and What are the next models you are thinking of and why?
    Based on the evaluation metrics, the Multiple Linear Regression model is likely overfitting the training data:
 
@@ -72,10 +74,15 @@ The following steps were performed:
    - Test R² Score: 0.6205, which is significantly lower than the training score, suggesting overfitting.
    - Training MSE: 0.2978, which is much lower compared to the test MSE.
    - Test MSE: 0.3695, indicating a gap between training and test performance.
+  
+   - Test MSE (After Tuning): 0.3541 (The test error decreased, indicating improved generalization.)
+   - Training MSE (After Tuning): 0.3092 (The training error increased slightly due to regularization.)
+   - Training R^2 Score (After Tuning): 0.6928 (Slightly lower, indicating reduced complexity of the model.)
+   - Test R^2 Score (After Tuning): 0.6362 (Improved compared to the original model, suggesting reduced overfitting.)
 
    The discrepancy between the training and test scores implies that the model is learning details specific to the training data, such as noise, which reduces its ability to generalize to unseen data.
 
-   To improve the model's generalization capabilities and address overfitting, we plan to explore regularization techniques such as **Ridge and Lasso Regression** will be applied to penalize large coefficients, thereby preventing overfitting and encouraging simpler models that generalize better.
+   To improve the model's generalization capabilities and address overfitting, we plan to explore regularization techniques such as **Lasso Regression** will be applied to penalize large coefficients, thereby preventing overfitting and encouraging simpler models that generalize better.
 
    **Polynomial Regression**: Considering the non-linear pattern observed in the residual plot, incorporating a polynomial regression model may help capture more complex relationships between the features and the target variable.
 
@@ -93,7 +100,9 @@ The following steps were performed:
   
 ## Conclusion
 
-Our Multiple Linear Regression model captured a good portion of variance in the training data but struggled to generalize, indicating overfitting. The training R² score (0.7041) was significantly higher than the test R² score (0.6205), and the test MSE (0.3695) was noticeably larger than the training MSE (0.2978). While residuals were close to normal, there were slight patterns, and the predicted vs. actual plot showed deviations, suggesting that our model was not fully capturing the data’s complexity. In order to improve the predictive accuracy, we plan to try to implement regularization, such as Ridge or Lasso Regression to control overfitting by reducing large coefficients; explore non-linear models to capture more complex relationships; cap or remove extreme values to avoid skewing results.
+After adding Ridge Regression, our model showed improved generalization capabilities compared to the initial Multiple Linear Regression model. Ridge regularization helped control overfitting by penalizing large coefficients, leading to a more balanced model performance across the training and test datasets. The training R² score (0.6927) was slightly reduced, but the test R² score improved to (0.6362), indicating better generalization. Additionally, the gap between the training MSE (0.3092) and the test MSE (0.3541) was reduced compared to the previous model, suggesting that the Ridge Regression model was better at capturing the complexity of the data without overfitting.
+
+While residuals were still close to normal, some slight patterns persisted, and the predicted vs. actual plot showed deviations, highlighting areas where the model could still be improved. To further enhance predictive accuracy, we plan to explore additional regularization techniques like Lasso Regression, which can help further reduce the influence of less important features. Additionally, we will consider non-linear models to capture more complex relationships and look into capping or removing extreme values to avoid skewing results.
 
 
 ### Second Model
