@@ -53,7 +53,7 @@ The following steps were performed:
 - **Model Training**: A pipeline was built combining data preprocessing and model training using **Multiple Linear Regression**.
 
 
-## Evaluation Metrics
+### Evaluation Metrics
 
 1. The model was evaluated using Mean Squared Error (MSE) and R² Score for both training and test datasets. The following metrics were calculated:
 
@@ -98,11 +98,9 @@ The following steps were performed:
 
    - **Predicted vs. Actual Plot**: Compared predicted values against actual values to evaluate how well the model captures the target variable. Ideally, the points should align closely with the line , which would indicate perfect predictions. Deviations from this line indicate areas where the model may be underpredicting or overpredicting. In our model, the points deviated from this line, indicating that the model's predictions were not always accurate, and there is room for improvement.
   
-## Conclusion
+4. **Conclusion - First Model**: After adding Ridge Regression, our model showed improved generalization capabilities compared to the initial Multiple Linear Regression model. Ridge regularization helped control overfitting by penalizing large coefficients, leading to a more balanced model performance across the training and test datasets. The training R² score (0.6927) was slightly reduced, but the test R² score improved to (0.6362), indicating better generalization. Additionally, the gap between the training MSE (0.3092) and the test MSE (0.3541) was reduced compared to the previous model, suggesting that the Ridge Regression model was better at capturing the complexity of the data without overfitting.
 
-After adding Ridge Regression, our model showed improved generalization capabilities compared to the initial Multiple Linear Regression model. Ridge regularization helped control overfitting by penalizing large coefficients, leading to a more balanced model performance across the training and test datasets. The training R² score (0.6927) was slightly reduced, but the test R² score improved to (0.6362), indicating better generalization. Additionally, the gap between the training MSE (0.3092) and the test MSE (0.3541) was reduced compared to the previous model, suggesting that the Ridge Regression model was better at capturing the complexity of the data without overfitting.
-
-While residuals were still close to normal, some slight patterns persisted, and the predicted vs. actual plot showed deviations, highlighting areas where the model could still be improved. To further enhance predictive accuracy, we plan to explore additional regularization techniques like Lasso Regression, which can help further reduce the influence of less important features. Additionally, we will consider non-linear models to capture more complex relationships and look into capping or removing extreme values to avoid skewing results.
+5. **Improment Plan**: While residuals were still close to normal, some slight patterns persisted, and the predicted vs. actual plot showed deviations, highlighting areas where the model could still be improved. To further enhance predictive accuracy, we plan to explore additional regularization techniques like Lasso Regression, which can help further reduce the influence of less important features. Additionally, we will consider non-linear models to capture more complex relationships and look into capping or removing extreme values to avoid skewing results.
 
 
 ### Second Model
@@ -127,6 +125,17 @@ For the second model, we trained a Decision Tree Regressor using the preprocesse
 
 The difference between training and test scores indicates that while the model fits the training data well, it struggles to generalize to new, unseen data. This discrepancy is a common issue for Decision Trees, especially when they are not properly regularized or when ensemble techniques are not used. The model may be learning specific details and noise in the training data, which prevents it from making accurate predictions on the test set.
 
+### Conclusion
+#### First Model: Multiple Linear Regression
+The Multiple Linear Regression model effectively captured a significant portion of the variance in the training data, as reflected by the Training R² Score (0.7041) and Training MSE (0.2978). However, its performance on the test set was weaker, with a Test R² Score (0.6205) and Test MSE (0.3695), indicating overfitting. The residual plot and predicted vs. actual plot revealed slight patterns and deviations, suggesting the model did not fully capture the data's complexity.
+
+Improvement Plan: To address these issues, we plan to explore regularization techniques such as Ridge and Lasso Regression to prevent overfitting by penalizing large coefficients. Additionally, we will consider non-linear models to capture more complex relationships and handle extreme values to reduce their impact on the model.
+#### Second Model: Decision Tree Regressor
+The Decision Tree Regressor demonstrated strong performance on the training set, with a low Training MSE (0.1734) and a high Training R² Score (0.8277). However, the model exhibited significant overfitting, as indicated by the higher Test MSE (0.4695) and lower Test R² Score (0.5178). The residual plot showed increased variance for higher actual values, and the actual vs. predicted plot revealed notable deviations from the diagonal line for larger outputs. These results suggest that while the model fits the training data well, it struggles to generalize to unseen data, particularly for higher target values. In an effort to address the overfitting, we experimented with tuning hyperparameters such as 'model__max_depth': [7, 10, 15], which aimed to limit the tree’s complexity by restricting its depth. The updated model achieved a Training MSE of 0.4080 and Training R² Score of 0.5947, with a Test MSE of 0.5423 and Test R² Score of 0.4430. These results showed reduced overfitting, as evidenced by a smaller gap between training and test performance, but also demonstrated a trade-off in predictive accuracy.
+
+Improvement Plan: Pruning the tree, further hyperparameter tuning, or adopting ensemble methods like Random Forest or Gradient Boosting could reduce overfitting. Additionally, expanding the dataset and enhancing feature engineering may help capture more complex patterns, particularly for higher-value predictions, thereby improving generalization and model robustness.
+
+General: Both models demonstrated strengths but also exhibited clear signs of overfitting. Regularization, ensemble approaches, and better dataset balancing will be crucial in improving predictive performance and achieving more robust generalization across both approaches.
 
 ## Instructions for Jupyter Notebook
 
