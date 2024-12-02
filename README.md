@@ -121,9 +121,22 @@ For the second model, we trained a Decision Tree Regressor using the preprocesse
    - Test MSE: 0.4695 (The error on the test set was higher than the training set.)
    - Training R^2 Score: 0.8277 (Indicates a good fit for the training data.)
    - Test R^2 Score: 0.5178 (Lower compared to training, suggesting overfitting.)
-
-
 The difference between training and test scores indicates that while the model fits the training data well, it struggles to generalize to new, unseen data. This discrepancy is a common issue for Decision Trees, especially when they are not properly regularized or when ensemble techniques are not used. The model may be learning specific details and noise in the training data, which prevents it from making accurate predictions on the test set.
+
+4. Graphical Analysis:
+   - Training vs. Test MSE: The bar chart comparing Training MSE and Test MSE highlights a significant gap, with the Training MSE being much lower. This suggests that the model has overfitted the training data, capturing noise and unnecessary complexity that does not generalize well to unseen data.
+   - Residual Plot: The scatter plot of residuals shows increased variance for higher actual values. While some residuals are close to zero, others deviate significantly, indicating inconsistencies in the model’s ability to generalize, particularly for larger outputs. This pattern reflects potential overfitting or insufficient training data for those ranges.
+   - Actual vs. Predicted Values: The scatter plot comparing actual and predicted values shows good alignment for smaller outputs, with many points near the diagonal line. However, noticeable deviations occur for higher actual values, revealing that the model struggles to predict larger outputs accurately, likely due to overfitting.
+
+5. Question:
+   - Where does your model fit in the fitting graph? From the Training vs. Test MSE Graph, we can see a significant gap between training and test MSE indicates overfitting. The model performs well on training data but generalizes poorly to unseen data. The growing spread of residuals as actual values increase(Residual Plot) suggests that the model struggles to capture the variance in the data, further confirming overfitting. While many predictions are close to the diagonal, deviations (especially for higher actual values) highlight the model's difficulty in accurately predicting for outliers or complex cases.
+   - What are the next models you are thinking of and why? Gradient Boosting: Builds trees iteratively, correcting errors from previous trees. It often outperforms Random Forest in accuracy and offers strong control over bias-variance trade-offs with hyperparameter tuning
+
+6. Predictions of correct: 411.
+   
+   FP: 718.
+
+   FN: 705.
 
 ### Conclusion
 #### First Model: Multiple Linear Regression
