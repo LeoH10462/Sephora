@@ -40,6 +40,7 @@ Our project aims to predict the popularity of Sephora products by analyzing metr
    - The dataset will be split into training, validation, and test sets to evaluate model performance on unseen data effectively.
 
 ## Model Training
+### First Model
 
 We trained a **Linear Regression** model using the preprocessed data. Here are features used for prediction:
 `brand`, `category`, `size`, `rating`, `number_of_reviews`, `love`, `MarketingFlags`, `online_only`, `exclusive`, `limited_edition`, `limited_time_offer`.
@@ -48,6 +49,7 @@ The following steps were performed:
 - **Data Split**: The data was split into a training set (80%) and a test set (20%).
 
 - **Model Training**: A pipeline was built combining data preprocessing and model training using **Multiple Linear Regression**.
+
 
 ## Evaluation Metrics
 
@@ -75,11 +77,11 @@ The following steps were performed:
 
    To improve the model's generalization capabilities and address overfitting, we plan to explore regularization techniques such as **Ridge and Lasso Regression** will be applied to penalize large coefficients, thereby preventing overfitting and encouraging simpler models that generalize better.
 
-   Polynomial Regression: Considering the non-linear pattern observed in the residual plot, incorporating a polynomial regression model may help capture more complex relationships between the features and the target variable.
+   **Polynomial Regression**: Considering the non-linear pattern observed in the residual plot, incorporating a polynomial regression model may help capture more complex relationships between the features and the target variable.
 
-   Tree-based Models (Decision Tree): Since our current model might be missing non-linear relationships, using a tree-based model can provide better performance in capturing complex patterns without making strong parametric assumptions.
+   **Tree-based Models (Decision Tree)**: Since our current model might be missing non-linear relationships, using a tree-based model can provide better performance in capturing complex patterns without making strong parametric assumptions.
 
-   Support Vector Machines (SVMs): For a more refined approach, SVMs with different kernel functions could also be explored. Like price and satisfied is non-linear and complex, an SVM with an RBF kernel could be a good choice. This would allow the model to draw non-linear boundaries in the feature space to better classify satisfied outcomes.
+   **Support Vector Machines (SVMs)**: For a more refined approach, SVMs with different kernel functions could also be explored. Like price and satisfied is non-linear and complex, an SVM with an RBF kernel could be a good choice. This would allow the model to draw non-linear boundaries in the feature space to better classify satisfied outcomes.
 
 3. **Graphical Analysis**
    The following plots were used to analyze model performance:
@@ -92,6 +94,30 @@ The following steps were performed:
 ## Conclusion
 
 Our Multiple Linear Regression model captured a good portion of variance in the training data but struggled to generalize, indicating overfitting. The training R² score (0.7041) was significantly higher than the test R² score (0.6205), and the test MSE (0.3695) was noticeably larger than the training MSE (0.2978). While residuals were close to normal, there were slight patterns, and the predicted vs. actual plot showed deviations, suggesting that our model was not fully capturing the data’s complexity. In order to improve the predictive accuracy, we plan to try to implement regularization, such as Ridge or Lasso Regression to control overfitting by reducing large coefficients; explore non-linear models to capture more complex relationships; cap or remove extreme values to avoid skewing results.
+
+
+### Second Model
+For the second model, we trained a Decision Tree Regressor using the preprocessed data. Here are the main steps:
+1. Hyperparameter Tuning: A Decision Tree model can be prone to overfitting, so we employed hyperparameter tuning to find the best model settings. The following hyperparameters were tuned using GridSearchCV:
+   
+   - `max_depth`: Limited tree depth to control model complexity.
+   - `min_samples_split`: Minimum samples required to split an internal node.
+   - `min_samples_leaf`: Minimum samples required to be at a leaf node.
+
+2. Model Training:
+   - A pipeline was built that combined data preprocessing and model training using a **Decision Tree Regressor**.
+   - The hyperparameter tuning process was carried out with **5-fold** cross-validation to ensure robustness and prevent overfitting.
+
+3. Evaluation Metrics
+   The Decision Tree Regressor model was evaluated using the following metrics for both training and test datasets:
+   - Training MSE: 0.1734 (The model showed low error on the training set.)
+   - Test MSE: 0.4695 (The error on the test set was higher than the training set.)
+   - Training R^2 Score: 0.8277 (Indicates a good fit for the training data.)
+   - Test R^2 Score: 0.5178 (Lower compared to training, suggesting overfitting.)
+
+
+The difference between training and test scores indicates that while the model fits the training data well, it struggles to generalize to new, unseen data. This discrepancy is a common issue for Decision Trees, especially when they are not properly regularized or when ensemble techniques are not used. The model may be learning specific details and noise in the training data, which prevents it from making accurate predictions on the test set.
+
 
 ## Instructions for Jupyter Notebook
 
