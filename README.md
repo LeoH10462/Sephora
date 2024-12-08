@@ -143,52 +143,40 @@ The following steps were performed:
    - **5-Fold Cross-Validation**:
      - used to ensure strong evaluation by splitting the training data into five subsets, iteratively using one subset for validation and the remaining for training. It allowed us to assess the model's performance across different subsets of the data, reducing the risk of overfitting to any single train-test split and ensuring the selected α generalizes well to unseen data.
 
+```python
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import GridSearchCV
+
+model = Ridge()
+
+model_pipeline = Pipeline(steps=[('preprocessor', preprocessor), ('model', model)])
+
+# Define hyperparameter grid for Ridge regression (regularization strength)
+param_grid = {
+    'model__alpha': [0.1, 1, 10, 50, 100]
+}
+
+grid_search = GridSearchCV(model_pipeline, param_grid, cv=5, scoring='neg_mean_squared_error', verbose=2)
+
+```
+
 3. **Data Splitting**: The dataset was split into training (80%) and test (20%) sets using the `train_test_split` function from scikit-learn. The training set was used for hyperparameter tuning and model fitting, while the test set was reserved for final evaluation to assess the model's performance on unseen data.
 
----
 
-## Results
+```python
+# Splitting the dataset into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-### Model 1 – Ridge Regression (Regularized Linear Regression)
+grid_search.fit(X_train, y_train)
+print("Best Parameters:", grid_search.best_params_)
 
-**Evaluation Metrics**:  
-The model was evaluated using Mean Squared Error (MSE) and \(R^2\) Score for both training and test datasets. The following metrics were calculated:
+# Making predictions with the best model
+y_train_pred = grid_search.best_estimator_.predict(X_train)
+y_test_pred = grid_search.best_estimator_.predict(X_test)
 
-- **Training MSE**: 0.35897
-- **Test MSE**: 0.36439
-- **Training \(R^2\) Score**: 0.64339
-- **Test \(R^2\) Score**: 0.62569
+```
 
-**Cross-Validation Results**:
-
-- **MSE (Mean)**: 0.74234
-- **MSE (Standard Deviation)**: 0.31625
-
-**Residual Plot**:
-
-- Visualized the residuals to check for patterns and ensure errors are randomly distributed.
-
-![](images/r_m1.png)
-
-**Distribution of Raw Residuals and Log-Transformed Residuals**:
-
-- Plotted the raw residuals and their log-transformed values to evaluate their distribution.
-
-![](images/d_m1.png)
-
-![](images/d_logm1.png)
-
-**Predicted vs Actual Value Scatter Plot**:
-
-- Compared the predicted values against the actual values to assess how well the model captures the target variable.
-
-![](images/s_m1.png)
-
----
-
-### Methods
-
-#### Model 2: Decision Tree Regressor
+### Model 2: Decision Tree Regressor
 
 A `DecisionTreeRegressor` was implemented as a second model to predict the log-transformed price of the products. The following steps were followed:
 
@@ -254,11 +242,54 @@ A `DecisionTreeRegressor` was implemented as a second model to predict the log-t
    mse_gap = (test_mse - train_mse) / train_mse
    ```
 
+
 ---
 
-## Results for Model 2
+## Results
 
-### Feature Selection
+### Model 1 – Ridge Regression (Regularized Linear Regression)
+
+**Evaluation Metrics**:  
+The model was evaluated using Mean Squared Error (MSE) and \(R^2\) Score for both training and test datasets. The following metrics were calculated:
+
+- **Training MSE**: 0.35897
+- **Test MSE**: 0.36439
+- **Training \(R^2\) Score**: 0.64339
+- **Test \(R^2\) Score**: 0.62569
+
+**Cross-Validation Results**:
+
+- **MSE (Mean)**: 0.74234
+- **MSE (Standard Deviation)**: 0.31625
+
+**Residual Plot**:
+
+- Visualized the residuals to check for patterns and ensure errors are randomly distributed.
+
+![](images/r_m1.png)
+
+**Distribution of Raw Residuals and Log-Transformed Residuals**:
+
+- Plotted the raw residuals and their log-transformed values to evaluate their distribution.
+
+![](images/d_m1.png)
+
+![](images/d_logm1.png)
+
+**Predicted vs Actual Value Scatter Plot**:
+
+- Compared the predicted values against the actual values to assess how well the model captures the target variable.
+
+![](images/s_m1.png)
+
+
+---
+
+
+
+### Results for Model 2
+
+#### Feature Selection
 
 The following top features were selected, with their importance scores:
 
@@ -367,3 +398,10 @@ Model 2 provides a solid baseline for comparison, balancing accuracy and general
   - Drafted concise descriptions for Model 2, including strengths, weaknesses, and performance, and provided a conclusion with future improvement directions.
   - Coordinated with peers to discuss methodology, review results, and ensure project alignment.
   - Assisted peers in debugging and contributed to feature expansion for Model 1.
+
+- Sihan Wang
+   - Train the first model and apply Hyperparameter Tuning
+   - Evaluate the Model Performance of the first model by using visualization and cross-validation
+   - Develop Data Exploration by using visualization, like correlation heatmap
+   - Accomplish the writing report for model 1
+   - Coordinated with peers to discuss methodology, review results, and ensure project alignment
