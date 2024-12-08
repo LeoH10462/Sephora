@@ -256,12 +256,29 @@ A `DecisionTreeRegressor` was implemented as a second model to predict the log-t
 
 ---
 
-#### Figures
+## Results for Model 2
 
-1. **Training vs. Test MSE**  
-   A bar chart comparing training and test MSE for the Decision Tree model.
+### Feature Selection
 
-Would you like a visualization of the results or further refinement of this section?
+The following top features were selected, with their importance scores:
+
+- rating: 0.15
+- number_of_reviews: 0.10
+- size_ml: 0.09
+- love: 0.07
+- limited_time_offer: 0.06
+  The feature selection reduced the dimensionality of the dataset from 477 to the most relevant features, improving computational efficiency and generalization.
+  Hyperparameter Tuning
+  After 40 fits, the optimal hyperparameters for the Decision Tree Regressor were identified:
+- max_depth: 20
+- min_samples_split: 10
+- min_samples_leaf: 2
+  Model Performance
+- Training MSE: 0.3125
+- Test MSE: 0.3383
+- MSE Gap: 8.24%
+
+#### Figures for model 2
 
 ## Conclusion
 
