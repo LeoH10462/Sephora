@@ -298,13 +298,72 @@ The chart highlights the top 10 features influencing the Decision Tree Regressor
    Predicted values align well with actual values but show minor deviations for higher values, reflecting slightly reduced performance on larger targets.
 
 Overall, the model generalizes well with no major overfitting or underfitting issues.
+It can also be seen by the Model2's Fit plot:
+
+![](images/model_2_img/Visualizing%20the%20Model2's%20Fit.png)
+
+This graph visually represent where our model 2 stands in terms of fitting, clearly showing the close performance on training and testing data.
+
+#### Questions:
+
+- Where does your model fit in the fitting graph?
+  The relatively small MSE gap (8.24%) indicates that the model is well-fitted and generalizes well to unseen data. This suggests the model is neither overfitting nor underfitting, fitting squarely in the "ideal" region of a fitting graph.
 
 [Links to the work](https://website-name.com "Link title")
 
-## Conclusion
+- What are the next models you are thinking of and why?
+  Support Vector Regressor (SVR)
+  Why?
+
+  SVR is effective for small to medium-sized datasets and can model non-linear relationships using kernels like RBF or polynomial.
+  It focuses on minimizing a margin around the predictions rather than optimizing for absolute accuracy.
+  Next Steps:
+
+  Test SVR with RBF kernel and tune hyperparameters like C (regularization) and gamma (kernel coefficient).
+
+### Conclusion for Model 1
 
 Ridge Regression demonstrated robust performance, effectively balancing training and test errors and minimizing overfitting. Future work could explore non-linear models or additional engineered features to further enhance accuracy.
 
+### Conclusion for Model 2
+
+Model 2, a Decision Tree Regressor, demonstrated strong performance in predicting the target variable with minimal overfitting and a small gap between training and testing errors:
+
+- **Performance Metrics**:
+
+  - Training MSE: 0.3125
+  - Testing MSE: 0.3383
+  - MSE Gap: 8.24%
+
+  These results indicate that the model generalizes well to unseen data while maintaining high accuracy on the training set.
+
+- **Residual Analysis**:
+
+  - Residuals were centered around zero, showing no significant bias in predictions.
+  - However, a slight increase in residual variance for higher actual values suggests the model struggles with large target values, a common limitation of decision trees.
+
+- **Strengths**:
+
+  - The model effectively captured the underlying data patterns, as evidenced by close alignment between predicted and actual values in the test set.
+  - Feature selection and hyperparameter tuning contributed to its ability to generalize well, avoiding overfitting.
+
+- **Weaknesses**:
+  - Slight heteroscedasticity in residuals indicates the model's limitations in handling variability for larger target values.
+  - Decision Trees are prone to instability with small changes in data, which may limit robustness.
+
+### Future Directions
+
+To build on the strengths of Model 2 and address its limitations:
+
+- Explore ensemble methods like Random Forests or Gradient Boosting to improve stability and reduce prediction variance.
+- Consider Neural Networks or Support Vector Regression to handle non-linear relationships and larger target values more effectively.
+
+Model 2 provides a solid baseline for comparison, balancing accuracy and generalization while revealing areas for further improvement.
+
 ## Statement of Collaboration
 
-- Ruiping Fang:
+- Ruiping Fang
+  - Visualized residuals and predicted vs. actual values to assess model performance and identify patterns.
+  - Drafted concise descriptions for Model 2, including strengths, weaknesses, and performance, and provided a conclusion with future improvement directions.
+  - Coordinated with peers to discuss methodology, review results, and ensure project alignment.
+  - Assisted peers in debugging and contributed to feature expansion for Model 1.
