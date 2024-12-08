@@ -280,6 +280,25 @@ The following top features were selected, with their importance scores:
 
 #### Figures for model 2
 
+![](images/model_2_img/Top10_features.png)
+The chart highlights the top 10 features influencing the Decision Tree Regressor. Key contributors include **category_Perfume**, **brand_SEPHORA COLLECTION**, and **size_ml**, emphasizing product category, brand, and size as major factors. Popularity metrics (**number_of_reviews**, **love**) and other categories like **Cologne** and **Moisturizers** also play significant roles.
+
+![](images/model_2_img/four.png)
+
+1. **Top Left: Residual Plot (Training Data)**  
+   Residuals are centered around zero with some spread, showing the model fits the training data well without significant bias.
+
+2. **Top Right: Residual Plot (Testing Data)**  
+   Residuals for the test data are also centered around zero but exhibit slightly more spread compared to the training data, indicating good generalization with minor variance.
+
+3. **Bottom Left: Predicted vs. Actual (Training Data)**  
+   Predicted values closely follow the diagonal, indicating accurate predictions on the training data.
+
+4. **Bottom Right: Predicted vs. Actual (Testing Data)**  
+   Predicted values align well with actual values but show minor deviations for higher values, reflecting slightly reduced performance on larger targets.
+
+Overall, the model generalizes well with no major overfitting or underfitting issues.
+
 ## Conclusion
 
 Ridge Regression demonstrated robust performance, effectively balancing training and test errors and minimizing overfitting. Future work could explore non-linear models or additional engineered features to further enhance accuracy.
