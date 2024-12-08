@@ -299,6 +299,12 @@ The chart highlights the top 10 features influencing the Decision Tree Regressor
 
 Overall, the model generalizes well with no major overfitting or underfitting issues.
 
+[Links to the work](https://website-name.com "Link title")
+
 ## Conclusion
 
 Ridge Regression demonstrated robust performance, effectively balancing training and test errors and minimizing overfitting. Future work could explore non-linear models or additional engineered features to further enhance accuracy.
+
+## Statement of Collaboration
+
+- Ruiping Fang:
