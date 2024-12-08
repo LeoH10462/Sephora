@@ -443,3 +443,9 @@ Model 2 provides a solid baseline for comparison, balancing accuracy and general
   - Implemented cross-validation techniques for Model 1 to ensure robustness, assisted with hyperparameter tuning for Model 2
   - Wrote the Discussion section for the project report
   - Coordinated with peers to discuss methodology, review results, and ensure project alignment
+
+- Rui Wang
+  - Wrote the abstract, introduction, and dataset description for the project report
+  - Collaborated on analyzing data exploration
+  - Participated in discussions to address overfitting issues in the Decision Tree model, tested various depths and parameter configurations
+  - Coordinated with peers to discuss methodology, review results, and ensure project alignment.
