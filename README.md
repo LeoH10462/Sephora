@@ -368,7 +368,7 @@ Based on Model 2's performance, we identified SVR (Support Vector Regression) as
 - Ability to model non-linear relationships using kernels like RBF or polynomial
 - Focus on minimizing prediction margins rather than optimizing for absolute accuracy
 
-### Synthesis and Future Directions
+### Synthesis and Improvement Directions
 
 The insights gained from both models suggest several key directions for future work:
 
@@ -381,6 +381,8 @@ The insights gained from both models suggest several key directions for future w
 Our progression from simpler linear models to more complex approaches, and the systematic way we addressed overfitting through careful parameter tuning, provides valuable insights for future price prediction models in the cosmetics market. While both models showed distinct strengths, there remains room for improvement in capturing the full complexity of cosmetic product pricing, particularly for luxury items and extreme price points.
 
 The evolution of our modeling approach reflects a deeper understanding of the challenges in price prediction and the importance of balancing model complexity with practical utility. Future work with SVR and potential ensemble methods builds naturally on these insights, promising further improvements in prediction accuracy while maintaining robust generalization capabilities.
+
+## Conclusion
 
 ### Conclusion for Model 1
 
