@@ -335,22 +335,52 @@ It can also be seen by the Model2's Fit plot:
 
 This graph visually represent where our model 2 stands in terms of fitting, clearly showing the close performance on training and testing data.
 
-#### Questions:
+## Discussion
 
-- Where does your model fit in the fitting graph?
-  The relatively small MSE gap (8.24%) indicates that the model is well-fitted and generalizes well to unseen data. This suggests the model is neither overfitting nor underfitting, fitting squarely in the "ideal" region of a fitting graph.
+Our analysis of predicting cosmetic product prices on Sephora evolved through a thoughtful progression of model development and refinement. Initially, we considered a multiple linear regression approach with potential log transformations and polynomial features. However, our understanding of the data's complexity led us to explore more sophisticated approaches. This evolution began with Ridge Regression to address multiple feature handling and regularization needs, followed by Decision Trees to capture non-linear relationships. Throughout this process, our model selection and tuning decisions were guided by the constant balance between model complexity and generalization capability.
 
-[Links to the work](https://website-name.com "Link title")
+### Model 1: Ridge Regression Analysis
 
-- What are the next models you are thinking of and why?
-  Support Vector Regressor (SVR)
-  Why?
+#### Model Fitting Assessment
+Our Ridge Regression model demonstrated characteristics of balanced fitting - neither severely underfitting nor overfitting. The residual plots and predicted vs. actual plot analyses revealed that the model captured general data trends while maintaining reasonable variance in residuals. However, we observed that the model may have oversimplified some relationships, particularly for higher-priced items where data points showed greater deviation from the ideal prediction line.
 
-  SVR is effective for small to medium-sized datasets and can model non-linear relationships using kernels like RBF or polynomial.
-  It focuses on minimizing a margin around the predictions rather than optimizing for absolute accuracy.
-  Next Steps:
+Based on our analysis, the model occupied a middle ground in the fitting spectrum. This was evidenced by the relatively low variance of residuals and reasonable clustering around the line in the predicted vs. actual plot. However, the scatter of residuals and deviation of data points from the red dashed line at higher prices indicated that our model might be over-simplifying some complex relationships between features and the target variable.
 
-  Test SVR with RBF kernel and tune hyperparameters like C (regularization) and gamma (kernel coefficient).
+#### Future Modeling Directions
+Based on these observations, we identified several promising directions for improvement:
+
+1. **Polynomial Regression**: The non-linear patterns observed in our residual plots suggested that polynomial features might better capture the complexity in price relationships.
+
+2. **Tree-based Models**: The limitations in capturing non-linear relationships pointed toward decision trees as a potential solution for modeling complex patterns without requiring strong parametric assumptions.
+
+3. **Support Vector Machines**: The complex, non-linear nature of price relationships suggested that SVMs with RBF kernels could provide better classification boundaries, particularly for handling the nuanced relationships in our data.
+
+### Model 2: Decision Tree Analysis
+
+#### Model Fitting Characteristics
+Our Decision Tree model showed promising results with a relatively small MSE gap (8.24%) between training and testing performance, suggesting good generalization to unseen data. This indicated that the model achieved a balance point where it neither oversimplified nor overcomplicated the relationships in the data, fitting squarely in the "ideal" region of a fitting graph.
+
+Through our iterative improvement process, we found that careful parameter tuning was essential for managing the trade-off between model complexity and generalization. While adjusting parameters sometimes led to lower raw accuracy, it often resulted in more robust and reliable predictions across different price ranges.
+
+#### Future Improvements
+Based on Model 2's performance, we identified SVR (Support Vector Regression) as a promising next step, chosen for its:
+- Effectiveness with small to medium-sized datasets
+- Ability to model non-linear relationships using kernels like RBF or polynomial
+- Focus on minimizing prediction margins rather than optimizing for absolute accuracy
+
+### Synthesis and Future Directions
+
+The insights gained from both models suggest several key directions for future work:
+
+1. **Model Integration**: The complementary strengths of our models suggest that ensemble methods might provide more robust predictions across price ranges.
+
+2. **Feature Engineering**: Both models indicated the importance of better capturing non-linear relationships, suggesting a need for more sophisticated feature engineering.
+
+3. **Market Segmentation**: The varying performance across price ranges suggests that segment-specific models might improve overall prediction accuracy.
+
+Our progression from simpler linear models to more complex approaches, and the systematic way we addressed overfitting through careful parameter tuning, provides valuable insights for future price prediction models in the cosmetics market. While both models showed distinct strengths, there remains room for improvement in capturing the full complexity of cosmetic product pricing, particularly for luxury items and extreme price points.
+
+The evolution of our modeling approach reflects a deeper understanding of the challenges in price prediction and the importance of balancing model complexity with practical utility. Future work with SVR and potential ensemble methods builds naturally on these insights, promising further improvements in prediction accuracy while maintaining robust generalization capabilities.
 
 ### Conclusion for Model 1
 
@@ -401,7 +431,13 @@ Model 2 provides a solid baseline for comparison, balancing accuracy and general
 
 - Sihan Wang
    - Train the first model and apply Hyperparameter Tuning
-   - Evaluate the Model Performance of the first model by using visualization and cross-validation
+   - Evaluate the Model Performance of the first model with visualization
    - Develop Data Exploration by using visualization, like correlation heatmap
    - Accomplish the writing report for model 1
    - Coordinated with peers to discuss methodology, review results, and ensure project alignment
+ 
+- Chenyu Tang
+  - Performed initial data exploration analysis, and some visualization plots to understand data relationships
+  - Implemented cross-validation techniques for Model 1 to ensure robustness, assisted with hyperparameter tuning for Model 2
+  - Wrote the Discussion section for the project report
+  - Coordinated with peers to discuss methodology, review results, and ensure project alignment
