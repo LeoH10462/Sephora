@@ -449,3 +449,9 @@ Model 2 provides a solid baseline for comparison, balancing accuracy and general
   - Collaborated on analyzing data exploration
   - Participated in discussions to address overfitting issues in the Decision Tree model, tested various depths and parameter configurations
   - Coordinated with peers to discuss methodology, review results, and ensure project alignment.
+
+- Jialin Hu
+  - Contributed to data preprocessing by enhancing normalization techniques to improve data quality and model performance.
+  - Trained the second model with Random Forest Resgressor and retrained the second model using the top-selected features to further refine its accuracy and efficiency.
+  - Utilized visualization tools to analyze the performance and behavior of the second model.
+  - Collaborated with teammates to exchange ideas and implement enhancements for the second model, focusing on feature selection and optimization.
