@@ -97,7 +97,6 @@ Our project aims to predict the popularity of Sephora products by analyzing metr
 5. **Feature Engineering**:
 
    - Additional features, such as a `popularity_score` calculated from `rating`, `love`, and `number_of_reviews`, may be engineered to better capture a product’s overall appeal. We might also explore grouped features, like price ranges or aggregations for the `brand` and `category` fields.
-   - To standardize the `size` field, we extracted the total ounces from product size strings using a custom function designed to handle various formats, including single item sizes (e.g., "0.7oz/20mL"), multiple item sizes (e.g., "5x0.16oz/5mL"), and irregular entries (e.g., "nosize" or missing ounces). The function cleaned the input strings, matched patterns using regular expressions, and calculated the total ounces by multiplying the number of items by the ounces per item.
 
 6. **Dropped Unnecessary Columns**:
 
@@ -109,6 +108,15 @@ Our project aims to predict the popularity of Sephora products by analyzing metr
 
 7. **Data Splitting**:
    - The dataset will be split into training, validation, and test sets to evaluate model performance on unseen data effectively.
+
+8. **Parsing and Transforming the size column**:
+   - The size column contained a mixture of text-based volume measurements (e.g., "5 x 0.16oz/5mL") and missing values (no size).
+     - If the size was listed in milliliters (mL), we extracted the numeric value. For sizes in ounces (oz), they were converted to milliliters using the conversion 1 oz=29.5735 mL1 \, \text{oz} = 29.5735 \, \text{mL}1oz=29.5735mL.
+     - Missing values (no size) were replaced with 0.
+9. **Target Variable Transformation**:
+   - The target variable, price, had a skewed distribution, with a small number of high-priced products causing an imbalance.
+   - To stabilize variance and improve the model's performance, we applied a log transformation using: y=log⁡(1+price)y = \log(1 + \text{price})y=log(1+price)
+
 
 ---
 
