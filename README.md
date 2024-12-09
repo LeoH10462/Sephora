@@ -345,7 +345,7 @@ This graph visually represent where our model 2 stands in terms of fitting, clea
 
 ## Discussion
 
-Our analysis of predicting cosmetic product prices on Sephora evolved through a thoughtful progression of model development and refinement. Initially, we considered a multiple linear regression approach with potential log transformations and polynomial features. However, our understanding of the data's complexity led us to explore more sophisticated approaches. This evolution began with Ridge Regression to address multiple feature handling and regularization needs, followed by Decision Trees to capture non-linear relationships. Throughout this process, our model selection and tuning decisions were guided by the constant balance between model complexity and generalization capability.
+Our analysis of predicting cosmetic product prices on Sephora evolved through a thoughtful progression of model development and refinement. Initially, we considered a multiple linear regression approach with potential log transformations and polynomial features. However, our understanding of the data's complexity led us to explore more sophisticated approaches. This evolution began with Ridge Regression to address multiple feature handling and regularization needs. Originally, we considered Decision Trees for our second model due to their ability to capture non-linear relationships, but after observing their tendency for overfitting and limited generalization capability, we transitioned to Random Forest to leverage ensemble learning capabilities while maintaining the advantages of tree-based models. Throughout this process, our model selection and tuning decisions were guided by the constant balance between model complexity and generalization capability.
 
 ### Model 1: Ridge Regression Analysis
 
@@ -359,34 +359,40 @@ Based on these observations, we identified several promising directions for impr
 
 1. **Polynomial Regression**: The non-linear patterns observed in our residual plots suggested that polynomial features might better capture the complexity in price relationships.
 
-2. **Tree-based Models**: The limitations in capturing non-linear relationships pointed toward decision trees as a potential solution for modeling complex patterns without requiring strong parametric assumptions.
+2. **Tree-based Models**: The limitations in capturing non-linear relationships pointed toward tree-based models as a potential solution for modeling complex patterns without requiring strong parametric assumptions.
 
 3. **Support Vector Machines**: The complex, non-linear nature of price relationships suggested that SVMs with RBF kernels could provide better classification boundaries, particularly for handling the nuanced relationships in our data.
 
-### Model 2: Decision Tree Analysis
+### Model 2: Random Forest Analysis
 
-#### Model Fitting Characteristics
-Our Decision Tree model showed promising results with a relatively small MSE gap (8.24%) between training and testing performance, suggesting good generalization to unseen data. This indicated that the model achieved a balance point where it neither oversimplified nor overcomplicated the relationships in the data, fitting squarely in the "ideal" region of a fitting graph.
+#### Model Evolution and Fitting Characteristics
+Our second model underwent significant evolution, starting from a Decision Tree approach but ultimately transitioning to Random Forest due to the Decision Tree's limitations in handling complex relationships while maintaining generalization. This transition proved beneficial, as the Random Forest model demonstrated robust performance, particularly after feature selection refinement. The model showed promising results with a relatively small MSE gap (8.24%) between training and testing performance, suggesting good generalization to unseen data.
 
-Through our iterative improvement process, we found that careful parameter tuning was essential for managing the trade-off between model complexity and generalization. While adjusting parameters sometimes led to lower raw accuracy, it often resulted in more robust and reliable predictions across different price ranges.
+The implementation of feature importance analysis and subsequent model refinement with top-selected features helped improve both computational efficiency and model performance. This iterative improvement process highlighted the power of ensemble methods in handling complex pricing relationships, overcoming the limitations we encountered with single decision trees.
+
+#### Feature Selection Impact
+The model's performance benefited significantly from our feature selection process, which identified and retained the most influential predictors. This refinement process helped:
+- Reduce model complexity while maintaining predictive power
+- Improve computational efficiency
+- Provide clearer insights into key pricing factors in the cosmetics market
 
 #### Future Improvements
-Based on Model 2's performance, we identified SVR (Support Vector Regression) as a promising next step, chosen for its:
+Based on Model 2's performance with Random Forest, we identified SVR (Support Vector Regression) as a promising next step, chosen for its:
 - Effectiveness with small to medium-sized datasets
 - Ability to model non-linear relationships using kernels like RBF or polynomial
 - Focus on minimizing prediction margins rather than optimizing for absolute accuracy
 
-### Synthesis and Improvement Directions
+#### Synthesis and Improvement Direction
 
 The insights gained from both models suggest several key directions for future work:
 
-1. **Model Integration**: The complementary strengths of our models suggest that ensemble methods might provide more robust predictions across price ranges.
+1. **Model Integration**: The complementary strengths of our models - Ridge Regression's interpretability and Random Forest's ability to capture complex relationships - suggest that further exploration of ensemble methods might provide even more robust predictions across price ranges.
 
-2. **Feature Engineering**: Both models indicated the importance of better capturing non-linear relationships, suggesting a need for more sophisticated feature engineering.
+2. **Feature Engineering**: Both models, particularly the Random Forest's feature importance analysis, indicated the value of focused feature selection, suggesting potential benefits from more sophisticated feature engineering.
 
 3. **Market Segmentation**: The varying performance across price ranges suggests that segment-specific models might improve overall prediction accuracy.
 
-Our progression from simpler linear models to more complex approaches, and the systematic way we addressed overfitting through careful parameter tuning, provides valuable insights for future price prediction models in the cosmetics market. While both models showed distinct strengths, there remains room for improvement in capturing the full complexity of cosmetic product pricing, particularly for luxury items and extreme price points.
+Our progression from simpler linear models through decision trees to more sophisticated ensemble methods, and the systematic way we refined our feature selection, provides valuable insights for future price prediction models in the cosmetics market. The success of the Random Forest model, particularly after feature refinement, demonstrates the value of combining ensemble learning with careful feature selection.
 
 The evolution of our modeling approach reflects a deeper understanding of the challenges in price prediction and the importance of balancing model complexity with practical utility. Future work with SVR and potential ensemble methods builds naturally on these insights, promising further improvements in prediction accuracy while maintaining robust generalization capabilities.
 
