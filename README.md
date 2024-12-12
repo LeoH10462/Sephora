@@ -447,14 +447,12 @@ Model 2 provides a solid baseline for comparison, balancing accuracy and general
 ## Statement of Collaboration
 
 - Ruiping Fang
-
   - Visualized residuals and predicted vs. actual values to assess model performance and identify patterns.
   - Drafted concise descriptions for Model 2, including strengths, weaknesses, and performance, and provided a conclusion with future improvement directions.
   - Coordinated with peers to discuss methodology, review results, and ensure project alignment.
   - Assisted peers in debugging and contributed to feature expansion for Model 1.
 
 - Sihan Wang
-
   - Train the first model and apply Hyperparameter Tuning
   - Evaluate the Model Performance of the first model with visualization
   - Develop Data Exploration by using visualization, like correlation heatmap
@@ -462,14 +460,12 @@ Model 2 provides a solid baseline for comparison, balancing accuracy and general
   - Coordinated with peers to discuss methodology, review results, and ensure project alignment
 
 - Chenyu Tang
-
   - Performed initial data exploration analysis, and some visualization plots to understand data relationships
   - Implemented cross-validation techniques for Model 1 to ensure robustness, assisted with hyperparameter tuning for Model 2
   - Wrote the Discussion section for the project report
   - Coordinated with peers to discuss methodology, review results, and ensure project alignment
 
 - Rui Wang
-
   - Wrote the abstract, introduction, and dataset description for the project report
   - Collaborated on analyzing data exploration
   - Participated in discussions to address overfitting issues in the Random Forest model, tested various depths and parameter configurations
@@ -477,6 +473,13 @@ Model 2 provides a solid baseline for comparison, balancing accuracy and general
 
 - Jialin Hu
   - Contributed to data preprocessing by enhancing normalization techniques to improve data quality and model performance.
-  - Trained the second model with Random Forest Resgressor and retrained the second model using the top-selected features to further refine its accuracy and efficiency.
+  - Trained the second model with Random Forest Regressor and retrained the second model using the top-selected features to further refine its accuracy and efficiency.
   - Utilized visualization tools to analyze the performance and behavior of the second model.
   - Collaborated with teammates to exchange ideas and implement enhancements for the second model, focusing on feature selection and optimization.
+
+- Anna Ma
+  - Participated in Model 1 development by standardizing data and creating visualizations to explore key relationships.
+  - Conducted target variable analysis and visualizations to interpret Model 2 performance.
+  - Assisted in improving hyperparameter tuning by analyzing parameter configurations and contributing feedback to optimize model performance.
+  - Wrote the analysis and summary of model results, including proposed improvements to enhance model accuracy and efficiency.
+  - Coordinated with peers to discuss methodologies, review results, and ensure project alignment.
