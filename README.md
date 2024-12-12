@@ -107,6 +107,7 @@ Our project aims to predict the popularity of Sephora products by analyzing metr
      - **Categorical Features** were one-hot encoded using `OneHotEncoder`.
 
 7. **Data Splitting**:
+
    - The dataset will be split into training, validation, and test sets to evaluate model performance on unseen data effectively.
 
 8. **Parsing and Transforming the size column**:
@@ -116,7 +117,6 @@ Our project aims to predict the popularity of Sephora products by analyzing metr
 9. **Target Variable Transformation**:
    - The target variable, price, had a skewed distribution, with a small number of high-priced products causing an imbalance.
    - To stabilize variance and improve the model's performance, we applied a log transformation using: y=log⁡(1+price)y = \log(1 + \text{price})y=log(1+price)
-
 
 ---
 
@@ -170,7 +170,6 @@ grid_search = GridSearchCV(model_pipeline, param_grid, cv=5, scoring='neg_mean_s
 
 3. **Data Splitting**: The dataset was split into training (80%) and test (20%) sets using the `train_test_split` function from scikit-learn. The training set was used for hyperparameter tuning and model fitting, while the test set was reserved for final evaluation to assess the model's performance on unseen data.
 
-
 ```python
 # Splitting the dataset into training and test sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -184,12 +183,12 @@ y_test_pred = grid_search.best_estimator_.predict(X_test)
 
 ```
 
-### Model 2: Decision Tree Regressor
+### Model 2: Random Forest Regressor
 
-A `DecisionTreeRegressor` was implemented as a second model to predict the log-transformed price of the products. The following steps were followed:
+A `RandomForestRegressor` was implemented as a second model to predict the log-transformed price of the products. The following steps were followed:
 
 1. **Hyperparameter Tuning**  
-   Key parameters for the Decision Tree were optimized using `RandomizedSearchCV`. The parameters tuned were:
+   Key parameters for the Random Forest Regressor were optimized using RandomizedSearchCV. The parameters tuned were:
 
    - `max_depth`: [10, 20]
    - `min_samples_split`: [10, 25]
@@ -199,8 +198,9 @@ A `DecisionTreeRegressor` was implemented as a second model to predict the log-t
 
    ```python
    model_pipeline = Pipeline([
-       ('model', DecisionTreeRegressor(random_state=42))
+    ('model', RandomForestRegressor(random_state=42))
    ])
+
    ```
 
    The hyperparameter tuning was performed using the following code:
@@ -219,6 +219,7 @@ A `DecisionTreeRegressor` was implemented as a second model to predict the log-t
        cv=5,
        scoring='neg_mean_squared_error',
        random_state=42
+       n_jobs=-1
    )
    random_search.fit(X_train, y_train)
    ```
@@ -227,7 +228,7 @@ A `DecisionTreeRegressor` was implemented as a second model to predict the log-t
 
 1. **Feature Selection**
 
-   Feature importance scores from a preliminary model were used to identify the most predictive features. Only features with an importance score greater than 0.05 were retained for training the Decision Tree Regressor. This step reduced dimensionality and helped the model focus on the most relevant information.
+   Feature importance scores from a preliminary model were used to identify the most predictive features. Only features with an importance score greater than 0.05 were retained for training. This step reduced dimensionality and helped the model focus on the most relevant information.
    The feature selection process:
 
    ```python
@@ -249,7 +250,6 @@ A `DecisionTreeRegressor` was implemented as a second model to predict the log-t
 
    mse_gap = (test_mse - train_mse) / train_mse
    ```
-
 
 ---
 
@@ -290,10 +290,7 @@ The model was evaluated using Mean Squared Error (MSE) and \(R^2\) Score for bot
 
 ![](images/s_m1.png)
 
-
 ---
-
-
 
 ### Results for Model 2
 
@@ -308,7 +305,7 @@ The following top features were selected, with their importance scores:
 - limited_time_offer: 0.06
   The feature selection reduced the dimensionality of the dataset from 477 to the most relevant features, improving computational efficiency and generalization.
   Hyperparameter Tuning
-  After 40 fits, the optimal hyperparameters for the Decision Tree Regressor were identified:
+  After 40 fits, the optimal hyperparameters for the Random Forest Regressor were identified:
 - max_depth: 20
 - min_samples_split: 10
 - min_samples_leaf: 2
@@ -320,7 +317,7 @@ The following top features were selected, with their importance scores:
 #### Figures for model 2
 
 ![](images/model_2_img/Top10_features.png)
-The chart highlights the top 10 features influencing the Decision Tree Regressor. Key contributors include **category_Perfume**, **brand_SEPHORA COLLECTION**, and **size_ml**, emphasizing product category, brand, and size as major factors. Popularity metrics (**number_of_reviews**, **love**) and other categories like **Cologne** and **Moisturizers** also play significant roles.
+The chart shows the top 10 features influencing the Random Forest Regressor. Key contributors include **category_Perfume**, **brand_SEPHORA COLLECTION**, and **size_ml**, emphasizing product category, brand, and size as major factors. Popularity metrics (**number_of_reviews**, **love**) and other categories like **Cologne** and **Moisturizers** also play significant roles.
 
 ![](images/model_2_img/four.png)
 
@@ -350,11 +347,13 @@ Our analysis of predicting cosmetic product prices on Sephora evolved through a 
 ### Model 1: Ridge Regression Analysis
 
 #### Model Fitting Assessment
+
 Our Ridge Regression model demonstrated characteristics of balanced fitting - neither severely underfitting nor overfitting. The residual plots and predicted vs. actual plot analyses revealed that the model captured general data trends while maintaining reasonable variance in residuals. However, we observed that the model may have oversimplified some relationships, particularly for higher-priced items where data points showed greater deviation from the ideal prediction line.
 
 Based on our analysis, the model occupied a middle ground in the fitting spectrum. This was evidenced by the relatively low variance of residuals and reasonable clustering around the line in the predicted vs. actual plot. However, the scatter of residuals and deviation of data points from the red dashed line at higher prices indicated that our model might be over-simplifying some complex relationships between features and the target variable.
 
 #### Future Modeling Directions
+
 Based on these observations, we identified several promising directions for improvement:
 
 1. **Polynomial Regression**: The non-linear patterns observed in our residual plots suggested that polynomial features might better capture the complexity in price relationships.
@@ -366,18 +365,23 @@ Based on these observations, we identified several promising directions for impr
 ### Model 2: Random Forest Analysis
 
 #### Model Evolution and Fitting Characteristics
+
 Our second model underwent significant evolution, starting from a Decision Tree approach but ultimately transitioning to Random Forest due to the Decision Tree's limitations in handling complex relationships while maintaining generalization. This transition proved beneficial, as the Random Forest model demonstrated robust performance, particularly after feature selection refinement. The model showed promising results with a relatively small MSE gap (8.24%) between training and testing performance, suggesting good generalization to unseen data.
 
 The implementation of feature importance analysis and subsequent model refinement with top-selected features helped improve both computational efficiency and model performance. This iterative improvement process highlighted the power of ensemble methods in handling complex pricing relationships, overcoming the limitations we encountered with single decision trees.
 
 #### Feature Selection Impact
+
 The model's performance benefited significantly from our feature selection process, which identified and retained the most influential predictors. This refinement process helped:
+
 - Reduce model complexity while maintaining predictive power
 - Improve computational efficiency
 - Provide clearer insights into key pricing factors in the cosmetics market
 
 #### Future Improvements
+
 Based on Model 2's performance with Random Forest, we identified SVR (Support Vector Regression) as a promising next step, chosen for its:
+
 - Effectiveness with small to medium-sized datasets
 - Ability to model non-linear relationships using kernels like RBF or polynomial
 - Focus on minimizing prediction margins rather than optimizing for absolute accuracy
@@ -404,7 +408,8 @@ Ridge Regression demonstrated robust performance, effectively balancing training
 
 ### Conclusion for Model 2
 
-Model 2, a Decision Tree Regressor, demonstrated strong performance in predicting the target variable with minimal overfitting and a small gap between training and testing errors:
+Model 2, a Decision Tree Regressor, demonstrated strong performance in predicting the target variable with no overfitting and a small gap between training and testing errors:
+Regressor, demonstrated strong performance in predicting the target variable with minimal overfitting and a small gap between training and testing errors:
 
 - **Performance Metrics**:
 
@@ -440,28 +445,32 @@ Model 2 provides a solid baseline for comparison, balancing accuracy and general
 ## Statement of Collaboration
 
 - Ruiping Fang
+
   - Visualized residuals and predicted vs. actual values to assess model performance and identify patterns.
   - Drafted concise descriptions for Model 2, including strengths, weaknesses, and performance, and provided a conclusion with future improvement directions.
   - Coordinated with peers to discuss methodology, review results, and ensure project alignment.
   - Assisted peers in debugging and contributed to feature expansion for Model 1.
 
 - Sihan Wang
-   - Train the first model and apply Hyperparameter Tuning
-   - Evaluate the Model Performance of the first model with visualization
-   - Develop Data Exploration by using visualization, like correlation heatmap
-   - Accomplish the writing report for model 1
-   - Coordinated with peers to discuss methodology, review results, and ensure project alignment
- 
+
+  - Train the first model and apply Hyperparameter Tuning
+  - Evaluate the Model Performance of the first model with visualization
+  - Develop Data Exploration by using visualization, like correlation heatmap
+  - Accomplish the writing report for model 1
+  - Coordinated with peers to discuss methodology, review results, and ensure project alignment
+
 - Chenyu Tang
+
   - Performed initial data exploration analysis, and some visualization plots to understand data relationships
   - Implemented cross-validation techniques for Model 1 to ensure robustness, assisted with hyperparameter tuning for Model 2
   - Wrote the Discussion section for the project report
   - Coordinated with peers to discuss methodology, review results, and ensure project alignment
 
 - Rui Wang
+
   - Wrote the abstract, introduction, and dataset description for the project report
   - Collaborated on analyzing data exploration
-  - Participated in discussions to address overfitting issues in the Decision Tree model, tested various depths and parameter configurations
+  - Participated in discussions to address overfitting issues in the Random Forest model, tested various depths and parameter configurations
   - Coordinated with peers to discuss methodology, review results, and ensure project alignment.
 
 - Jialin Hu
