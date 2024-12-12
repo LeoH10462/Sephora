@@ -340,6 +340,8 @@ It can also be seen by the Model2's Fit plot:
 
 This graph visually represent where our model 2 stands in terms of fitting, clearly showing the close performance on training and testing data.
 
+For more detailed implementation,[ click](./CSE151A_Milestone5.ipynb)
+
 ## Discussion
 
 Our analysis of predicting cosmetic product prices on Sephora evolved through a thoughtful progression of model development and refinement. Initially, we considered a multiple linear regression approach with potential log transformations and polynomial features. However, our understanding of the data's complexity led us to explore more sophisticated approaches. This evolution began with Ridge Regression to address multiple feature handling and regularization needs. Originally, we considered Decision Trees for our second model due to their ability to capture non-linear relationships, but after observing their tendency for overfitting and limited generalization capability, we transitioned to Random Forest to leverage ensemble learning capabilities while maintaining the advantages of tree-based models. Throughout this process, our model selection and tuning decisions were guided by the constant balance between model complexity and generalization capability.
